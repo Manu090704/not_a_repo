@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>Manuel Bajos Rivera A01711581@tec.mx</header>
+    <h1>Laboratorio 1: HTML</h1>
+    <section id="info_personal">
+      <h2>Mis gustos</h2>
+      <ul>
+        <li>Ir al gimnasio</li>
+        <li>Jugar videojuegos</li>
+        <li>Escuchar música</li>
+        <li>Ver anime</li>
+        <li>Comer</li>
+      </ul>
+    </section>
+    <section id="Preguntas">
+      <h1>Preguntas</h1>
+      <div>
+        <strong
+          >¿Cuál es la diferencia entre Internet y la World Wide Web?</strong
+        >
+      </div>
+      La www es una red de páginas en el internet y un consejo que pone las
+      normas de la web. El Internet es una red de dispositivos conectados.
+      <div>
+        <strong>¿Cuáles son las partes de un URL?</strong>
+      </div>
+      Protocolo, dominio (ahora es una máquina virtual, antes era una
+      computadora),ruta antes carpeta, antes página (recursos) y etiqueta hoy
+      también son parámetros.
+      <div>
+        <strong
+          >¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT,
+          PATCH, DELETE?
+        </strong>
+      </div>
+      <ul>
+        <li>GET: Se utiliza para consultar información de la base de datos.</li>
+        <li>
+          HEAD: Se utiliza para consultar información de la base de datos solo
+          el encabezado.
+        </li>
+        <li>POST: Sube datos a la base de datos.</li>
+        <li>
+          PUT: Modifica datos que ya se subieron a la base de datos. PATCH: Hace
+          modificaciones especificas.
+        </li>
+        <li>DELETE: Elimina datos de la base de datos.</li>
+      </ul>
+      <div>
+        <strong
+          >¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por
+          ejemplo cuando ingresas tu usuario y contraseña en algún
+          sitio?</strong
+        >
+      </div>
+      POST
+      <div>
+        <strong
+          >¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por
+          ejemplo cuando ingresas tu usuario y contraseña en algún sitio? ¿Por
+          qué?</strong
+        >
+      </div>
+      El método que se utilizaría sería el POST ya que con este podemos mandar
+      la información a la base de datos.
+      <div>
+        <strong
+          >¿Qué método HTTP se utiliza cuando a través de un navegador web se
+          accede a una página a través de un URL?
+        </strong>
+      </div>
+      Se utiliza el método GET para desplegar la información sin hacer
+      modificaciones.
+      <div>
+        <strong>
+          servidor web devuelve una respuesta HTTP con código 200. ¿Qué
+          significa esto? ¿Ocurrió algún error?</strong
+        >
+      </div>
+      Significa que la petición HTTP funciono correctamente, sin ningún problema
+      ni error.
+      <div>
+        <strong
+          >¿Es responsabilidad del desarrollador corregir un sitio web si un
+          usuario reporta que intentó acceder al sitio y se encontró con un
+          error 404? ¿Por qué?</strong
+        >
+      </div>
+      No, ya que no es un error tal cual del servidor, el error 404 significa
+      que el recurso no fue encontrado, esto puede ser por ejemplo que el
+      recurso a buscar ya fue eliminado del servidor lo cual no significa que
+      este fallando si no que se hicieron modificaciones en los contenidos.
+      <div>
+        <strong
+          >¿Es responsabilidad del desarrollador corregir un sitio web si un
+          usuario reporta que intentó acceder al sitio y se encontró con un
+          error 500? ¿Por qué?</strong
+        >
+      </div>
+      Sí, ya que los errores 500 significa que la solicitud fue válida pero que
+      del lado del servidor no se logra procesar. Error en el servidor.
+      <div>
+        <strong
+          >¿Qué significa que un atributo HTML5 esté depreciado o desaprobado
+          (deprecated)? Menciona algunos elementos de HTML 4 que en HTML5 estén
+          desaprobados.</strong
+        >
+      </div>
+      Que ya no son recomendables usar debido a la actualizaciones del
+      navegador.
+      <div>
+        <strong
+          >¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</strong
+        >
+      </div>
+      HTML 5 es mucho más dinámico, soporta video y audio.
+      <div>
+        <strong
+          >¿Qué componentes de estructura y estilo tiene una tabla?
+        </strong>
+      </div>
+      Una tabla tiene tres componentes: encabezado, cuerpo y pie de tabla.
+      <div>
+        <strong
+          >¿Cuáles son los principales controles de una forma HTML5?</strong
+        >
+      </div>
+      input, button, form, password, etc.
+      <h2>
+        Sobre el ciclo de vida y desarrollo de los sistemas de información:
+      </h2>
+      <div>
+        <strong
+          >¿Cuál es el ciclo de vida de los sistemas de información?
+        </strong>
+      </div>
+      Investigación Preliminar, Determinación de Requerimientos, Diseño,
+      Pruebas, Implementación y Mantenimiento.
+      <div>
+        <strong
+          >¿Cuál es el ciclo de desarrollo de sistemas de información?
+        </strong>
+      </div>
+      Planificación, Análisis, Diseño, Implementación y Mantenimiento.
+    </section>
+
+    <section id="forma_con_control">
+      <h2>Forms</h2>
+      <form>
+        <label for="FullName">Full Name</label><br />
+        <input type="text" /><br />
+        <label for="Password">Password</label><br />
+        <input type="password" />
+      </form>
+    </section>
+    <footer>
+      <strong>referencias:</strong>
+      <br />
+      <a href="https://apidog.com/blog/http-head-vs-get/">head vs get</a>
+      <br />
+      <a href="https://www.adaptixnetworks.com/que-es-una-direccion-web-o-url/"
+        >url</a
+      >
+      <br />
+      <a href="https://developer.mozilla.org/es/docs/Glossary/World_Wide_Web"
+        >www</a
+      >
+      <br />
+      <a href="https://www.tokioschool.com/noticias/etiquetas-obsoletas-html5/"
+        >etiquetas-obsoletas-html5</a
+      >
+      <br />
+      <a
+        href="https://kinsta.com/es/blog/html-vs-html5/#:~:text=
+      A%20diferencia%20de%20las%20versiones,juegos%20o%20animaciones%20con%20%C3%A9l."
+        >Diferencias html 4 y 5</a
+      >
+      <br />
+      <a
+        href="https://developer.mozilla.org/es/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls"
+        >controles de forma</a
+      >
+    </footer>
+  </body>
+</html>
