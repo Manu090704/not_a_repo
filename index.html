@@ -4,10 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <header>Manuel Bajos Rivera A01711581@tec.mx</header>
+    <header>
+      <p>
+        Manuel Bajos Rivera <br />
+        A01711581@tec.mx
+      </p>
+    </header>
+
     <h1>Laboratorio 1: HTML</h1>
+    <section class="botones">
+      <button onclick="location.href='#Preguntas'">Preguntas</button>
+      <button onclick="location.href='#forma_con_control'">formulario</button>
+      <button onclick="location.href = '#referencias'">referencias</button>
+    </section>
     <section id="info_personal">
       <h2>Mis gustos</h2>
       <ul>
@@ -148,6 +160,44 @@
         </strong>
       </div>
       Planificación, Análisis, Diseño, Implementación y Mantenimiento.
+
+      <h1>Laboratorio CSS</h1>
+      <h2>CSS</h2>
+      <div>
+        <strong>
+          Como ingeniero de software ¿cuál es tu recomendación sobre el uso de
+          !important en un CSS?
+        </strong>
+      </div>
+      Que solo lo uses cuando sea urgente ya que no ayuda a tener un código
+      limpio porque rompe con la jerarquía.
+      <div>
+        <strong
+          >Si se pone una imagen de fondo en una página HTML, ¿por qué debe
+          escogerse con cuidado?
+        </strong>
+      </div>
+      Porque puede afectar en la estética y experiencia del usuario ya que puede
+      afectar al tiempo de espera para que cargue la página.
+      <div>
+        <strong
+          >Como ingeniero de software, ¿cuál es tu recomendación al elegir las
+          unidades de un propiedad de estilo entre %, px y pt?
+        </strong>
+      </div>
+      px nos puede ser muy útil con imágenes o bordes ya que es muy preciso. %
+      este nos ayuda a ajustar con mayor flexibilidad. pt este si no es muy
+      recomendable ya que en algunos navegadores ya no es compatible. Todos nos
+      pueden ser útiles en ciertos eventos pero una buena práctica sería usar em
+      ya que con esto el estilo se adapta al tamaño del display.
+      <div>
+        <strong
+          >¿Por qué el uso de una versión minimizada del CSS mejora el
+          rendimiento del sitio?
+        </strong>
+      </div>
+      Porque el código es más pequeño y se puede cargar más rápido. Reduce el
+      ancho de banda y hace que el tiempo sea menor.
     </section>
 
     <section id="forma_con_control">
@@ -159,7 +209,7 @@
         <input type="password" />
       </form>
     </section>
-    <footer>
+    <footer id="referencias">
       <strong>referencias:</strong>
       <br />
       <a href="https://apidog.com/blog/http-head-vs-get/">head vs get</a>
