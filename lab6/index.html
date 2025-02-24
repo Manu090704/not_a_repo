@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Opción A</h1>
+    <h1 id="Titulo">Opción A</h1>
     <h4>
       Con JavaScript y HTML5 [y quizás CSS], desarrolla una página para validar
       passwords. La página debe tener una forma con 2 campos, el campo de
@@ -21,6 +21,7 @@
         placeholder="Escribe tu contraseña"
       />
     </p>
+    <p id="result"></p>
     <p>
       <input
         type="password"
@@ -28,7 +29,7 @@
         placeholder="Verifica tu contraseña"
       />
     </p>
-    <p id="result"></p>
+    <button onclick="verificador_de_contra()">Verificar contraseña</button>
     <script src="script.js"></script>
   </body>
 </html>
