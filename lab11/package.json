@@ -4,6 +4,7 @@
   "description": "lab de construcción de software 2025, express",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Manu090704/not_a_repo/issues"
   },
-  "homepage": "https://github.com/Manu090704/not_a_repo#readme"
+  "homepage": "https://github.com/Manu090704/not_a_repo#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
 }
