@@ -130,6 +130,11 @@ app.get("/plantas/agregar", (request, response, next) => {
   response.send(html_header + html_form + html_footer);
 });
 
+//app.get es para registrar un middleware para peticiones http tipo get
+app.post("/plantas/agregar", (request, response, next) => {
+    response.send(html_header + html_form + html_footer);
+  });
+
 app.use((request, response, next) => {
   console.log("Otro middleware!");
   //Manda la respuesta
