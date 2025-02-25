@@ -1,4 +1,3 @@
-const { response } = require("express");
 const filesystem = require("fs"); //busca el modulo fs que es filesystem.
 filesystem.writeFileSync("hola.txt", "Hola desde Node");
 
@@ -11,8 +10,8 @@ for (let item of arreglo) {
     console.log(item);
   }, item);
 }
-
-/*const http = require("http");
+*/
+const http = require("http");
 const server = http.createServer((request, response) => {
   console.log(request);
   response.setHeader("Content-Type", "text/html");
@@ -20,7 +19,7 @@ const server = http.createServer((request, response) => {
   response.end();
 });
 server.listen(3000);
-*/
+
 
 const arr = [20, 10, 30, 40, 60, 1000, 30, 20, 50];
 const prom = (array) => {
@@ -31,5 +30,3 @@ const prom = (array) => {
   const result = prom / array.length;
   console.log(result);
 };
-
-prom(arr);
