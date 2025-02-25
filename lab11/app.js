@@ -125,8 +125,8 @@ app.use((request, response, next) => {
   next();
   //next es el compositive
 });
-
-app.use("/plantas/agregar", (request, response, next) => {
+//app.get es para registrar un middleware para peticiones http tipo get
+app.get("/plantas/agregar", (request, response, next) => {
   response.send(html_header + html_form + html_footer);
 });
 
