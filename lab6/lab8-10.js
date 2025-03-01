@@ -117,6 +117,18 @@ const html_footer = `</div>
 </html>
 `;
 
+const html_lab1= `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab1</title>
+</head>
+<body>
+    <h1>lab1 de Muestra</h1>
+</body>
+</html>`;
+
 const plantas = [];
 
 const http = require("http");
@@ -130,17 +142,10 @@ const server = http.createServer((request, response) => {
     response.setHeader("Content-Type", "text/html");
     response.write(html_header + html_form + html_footer);
     response.end();
-  } else if (request.url == "lab1") {
-    const filePath = path.join(__dirname, "../lab1-4/index.html");
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        response.writeHead(404, { "Content-Type": "text/plain" });
-        response.end("File not found");
-      } else {
-        response.writeHead(200, { "Content-Type": "text/html" });
-        response.end(data);
-      }
-    });
+  } else if (request.method == "GET" && request.url == "/lab1") {
+    response.setHeader("Content-Type", "text/html");
+    response.write(html_lab1);
+    response.end();
   } else if (request.method == "POST" && request.url == "/agregar") {
     const datos_completos = [];
 
