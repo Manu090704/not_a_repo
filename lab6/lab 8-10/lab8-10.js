@@ -1,7 +1,7 @@
 const filesystem = require("fs"); //busca el modulo fs que es filesystem.
 filesystem.writeFileSync("actividad 2 de lab8", "Hola desde Node");
 const path = require("path");
-
+////////////////////////variables con html///////////////////////////////////
 const html_header = `
 <!DOCTYPE html>
 <html>
@@ -129,8 +129,19 @@ const html_lab1= `<!DOCTYPE html>
 </body>
 </html>`;
 
+const html_lab2= `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab1</title>
+</head>
+<body>
+    <h1>otra pag</h1>
+</body>
+</html>`;
+///////////////////////////manejo peticiones http///////////////////
 const plantas = [];
-
 const http = require("http");
 
 const server = http.createServer((request, response) => {
@@ -142,11 +153,19 @@ const server = http.createServer((request, response) => {
     response.setHeader("Content-Type", "text/html");
     response.write(html_header + html_form + html_footer);
     response.end();
-  } else if (request.method == "GET" && request.url == "/lab1") {
+
+  } 
+  else if (request.method == "GET" && request.url == "/lab1") {
     response.setHeader("Content-Type", "text/html");
     response.write(html_lab1);
     response.end();
-  } else if (request.method == "POST" && request.url == "/agregar") {
+  }
+  else if(request.method == "GET" && request.url == "/lab2"){
+    response.setHeader("Content-Type", "text/html");
+    response.write(html_lab2);
+    response.end();
+  } 
+  else if (request.method == "POST" && request.url == "/agregar") {
     const datos_completos = [];
 
     request.on("data", (data) => {
@@ -186,7 +205,8 @@ const server = http.createServer((request, response) => {
       response.write(html_footer);
       response.end();
     });
-  } else {
+  } 
+  else {
     response.statusCode = 404;
     response.setHeader("Content-Type", "text/html");
     response.write(html_header);
@@ -197,7 +217,7 @@ const server = http.createServer((request, response) => {
     response.end();
   }
 });
-
+///////////////////////////ejercicios de lab8///////////////////
 const arr = [20, 10, 30, 40, 60, 1000, 30, 20, 50];
 const prom = (array) => {
   let prom = 0;
