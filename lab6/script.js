@@ -49,10 +49,10 @@ contra.addEventListener("keyup", (event) => {
   document.getElementById("result").textContent = mensajeFortaleza;
 });
 
-const titulo = document.getElementById("Titulo");
+const titulo = document.getElementById("titulo");
 
 const cambiadecolor = () => {
   titulo.style.color = "blue";
-}
+};
 
 titulo.onmouseover = cambiadecolor;
