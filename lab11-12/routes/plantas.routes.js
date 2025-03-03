@@ -8,7 +8,9 @@ router.get("/agregar", (request, response, next) => {
   response.render("agregar_planta");
 });
 //app.get es para registrar un middleware para peticiones http tipo get
-
+router.get("/prueba", (request, response, next) => {
+  response.render("ruta2formato");
+});
 //app.get es para registrar un middleware para peticiones http tipo get
 router.post("/agregar", (request, response, next) => {
   console.log(request.body);

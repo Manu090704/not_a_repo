@@ -20,10 +20,14 @@ app.use((request, response, next) => {
 });
 
 const plantasroutes = require("./routes/plantas.routes");
+const labr11routes = require("./routes/labr11.routes");
+const { request } = require("http");
 
 app.use("/plantas", plantasroutes);
 
 app.use("/regar", plantasroutes);
+
+app.use("/pruebas", labr11routes);
 
 app.use((request, response, next) => {
   console.log("Otro middleware!");
