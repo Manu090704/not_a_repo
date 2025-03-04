@@ -1,27 +1,18 @@
 const express = require("express");
-
 const router = express.Router();
 
-const plantas = [];
+const plantas_controller = require('../controllers/plantas.controllers');
 
-router.get("/agregar", (request, response, next) => {
-  response.render("agregar_planta");
-});
+
+router.get('/agregar', plantas_controller.get_agregar);
+router.post('/agregar', plantas_controller.post_agregar);
 //app.get es para registrar un middleware para peticiones http tipo get
-router.get("/prueba", (request, response, next) => {
+router.get('/prueba', (request, response, next) => {
   response.render("ruta2formato");
 });
 //app.get es para registrar un middleware para peticiones http tipo get
-router.post("/agregar", (request, response, next) => {
-  console.log(request.body);
-  plantas.push(request.body.nombre);
-  response.render(lista_planta);
-});
+router.get("/regar", plantas_controller.get_regar);
 
-const path = require("path");
-
-router.get("/", (request, response, next) => {
-  response.sendFile(path.join(__dirname, "..", "views", "index.html"));
-});
+router.get('/', plantas_controller.get_root);
 
 module.exports = router;

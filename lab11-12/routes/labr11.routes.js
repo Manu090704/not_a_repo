@@ -3,32 +3,16 @@ const { request } = require("http");
 const fs = require("fs");
 
 const router = express.Router();
-
+const lab_controller = require('../controllers/lab13.controllers');
 //app.get es para registrar un middleware para peticiones http tipo get
-router.get("/ruta2", (request, response, next) => {
-  response.render("ruta2formato");
-});
+router.get("/ruta2", lab_controller.get_agregar2);
 //app.get es para registrar un middleware para peticiones http tipo get
-router.get("/ruta3", (request, response, next) => {
-  response.render("ruta3formato");
-});
+router.get("/ruta3", lab_controller.get_agregar3);
 
-router.get("/ruta4", (request, response, next) => {
-  response.render("ruta4formato");
-});
+router.get("/ruta4", lab_controller.get_agregar4);
 
-router.get("/ruta5", (request, response, next) => {
-  response.render("ruta5formato");
-});
+router.get("/ruta5", lab_controller.get_agregar5);
 
-router.post("/guardar", (request, response) => {
-  const { nombre } = request.body;
-  if (nombre && nombre.trim() !== "") {
-    fs.appendFileSync("datosenviados.txt", `${nombre}\n`);
-    response.send("Datos enviados correctamente");
-  } else {
-    response.send("No se enviaron datos válidos");
-  }
-});
+router.post("/guardar", lab_controller.post_agregarlab);
 
 module.exports = router;

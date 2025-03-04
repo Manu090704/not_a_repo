@@ -25,8 +25,6 @@ const { request } = require("http");
 
 app.use("/plantas", plantasroutes);
 
-app.use("/regar", plantasroutes);
-
 app.use("/pruebas", labr11routes);
 
 app.use((request, response, next) => {
