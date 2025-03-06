@@ -1,7 +1,5 @@
 const express = require("express"); //modulo de node
 const app = express();
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
 
 const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
@@ -9,23 +7,36 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+const session = require("express-session");
+
+app.use(
+  session({
+    secret:
+      "mi string secreto que debe ser un string aleatorio muy largo, no como éste",
+    resave: false, //La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió
+    saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
+  })
+);
+
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+const { request } = require("http");
 //Middleware capa de enmedio que hace lo que digamos
 //el orden de los middleware si importa
 //se debe ordenar desde lo específico hasta lo general
-app.use((request, response, next) => {
-  console.log("Middleware!");
-  //Le permite a la petición avanzar hacia el siguiente middleware
-  next();
-  //next es el compositive
-});
+
+const userRoutes = require("./routes/users.routes");
+app.use("/users", userRoutes);
 
 const plantasroutes = require("./routes/plantas.routes");
-const labr11routes = require("./routes/labr11.routes");
-const { request } = require("http");
-
 app.use("/plantas", plantasroutes);
 
+const labr11routes = require("./routes/labr11.routes");
 app.use("/pruebas", labr11routes);
+
 
 app.use((request, response, next) => {
   console.log("Otro middleware!");
