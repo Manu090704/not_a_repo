@@ -4,7 +4,7 @@
   "description": "lab de construcción de software 2025, express",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +24,7 @@
     "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "express-session": "^1.18.1"
+    "express-session": "^1.18.1",
+    "mysql2": "^3.13.0"
   }
 }

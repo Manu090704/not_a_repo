@@ -1,12 +1,19 @@
 <%- include('includes/_header') %>
 
+<% if (info != '') { %>
+    <div class="notification is-info">
+        <%= info %>
+    </div>
+<% } %>
+
 <div class="columns">
 <% for(let planta of plantas) { %>
     <div class="column">
         <div class="card">
             <div class="card-content">
                 <div class="content">
-                    <%= planta.mi_nombre %>
+                    <a href="/plantas/<%= planta.id %>"><%= planta.mi_nombre %></a>
+                    <p><%= planta.created_at %></p>
                 </div>
             </div>
         </div>
