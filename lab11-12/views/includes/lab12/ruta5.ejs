@@ -1,4 +1,5 @@
 <form action="/pruebas/guardar" method="POST">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
   <label for="nombre" class="label">escribe tu nombre</label>
   <input
     class="input is-info"
