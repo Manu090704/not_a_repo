@@ -1,4 +1,4 @@
-const express = require("express"); //modulo de node
+const express = require("express");
 const app = express();
 
 const path = require("path");
@@ -22,28 +22,25 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+const csrf = require("csurf");
+const csrfProtection = csrf();
+app.use(csrfProtection);
 
-const { request } = require("http");
-//Middleware capa de enmedio que hace lo que digamos
-//el orden de los middleware si importa
-//se debe ordenar desde lo específico hasta lo general
+const usersRoutes = require("./routes/users.routes");
+app.use("/users", usersRoutes);
 
-const userRoutes = require("./routes/users.routes");
-app.use("/users", userRoutes);
-
-const plantasroutes = require("./routes/plantas.routes");
-app.use("/plantas", plantasroutes);
+const plantasRoutes = require("./routes/plantas.routes");
+app.use("/plantas", plantasRoutes);
 
 const labr11routes = require("./routes/labr11.routes");
 app.use("/pruebas", labr11routes);
 
-
 app.use((request, response, next) => {
   console.log("Otro middleware!");
+
   //Manda la respuesta
   response.statusCode = 404;
-  response.send("No se encontró la ruta");
-  //set_header, set_wirte, set_end en una en send
+  response.send("No se encuentra el recurso que estás buscando");
 });
 
 app.listen(3000);

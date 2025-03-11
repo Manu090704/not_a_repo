@@ -1,10 +1,11 @@
-const Planta = require('../models/plantas.model');
+const Planta = require('../models/planta.model');
 
 exports.get_agregar = (request, response, next) => {
     console.log(request.session.username);
     response.render('agregar_planta', {
         isLoggedIn: request.session.isLoggedIn || false,
         username: request.session.username || '',
+        csrfToken: request.csrfToken(),
     });
 };
 
@@ -13,7 +14,7 @@ exports.post_agregar = (request, response, next) => {
     const mi_planta = new Planta(request.body.nombre);
     mi_planta.save()
         .then(() => {
-            request.session.info = `La planta ${mi_planta.mi_nombre} se ha creado`;
+            request.session.info = `La planta ${mi_planta.nombre} se ha creado`;
             response.redirect('/plantas/');
         })
         .catch((error) => {
@@ -22,6 +23,7 @@ exports.post_agregar = (request, response, next) => {
 }
 
 exports.get_root = (request, response, next) => {
+
     const mensaje = request.session.info || '';
     if (request.session.info) {
         request.session.info = '';

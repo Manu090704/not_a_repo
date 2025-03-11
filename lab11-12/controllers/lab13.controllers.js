@@ -1,3 +1,4 @@
+
 exports.get_agregar2 = (request, response, next) => {
   response.render("ruta2formato");
 };
@@ -13,6 +14,7 @@ exports.get_agregar4 = (request, response, next) => {
 exports.get_agregar5 = (request, response, next) => {
   response.render("ruta5formato");
 };
+
 
 exports.post_agregarlab = (request, response) => {
   const { nombre } = request.body;
