@@ -1,17 +1,24 @@
-const Planta = require('../models/planta.model');
+const Plantas = require('../models/planta.model');
+const Jardin = require('../models/jardin.model');
 
 exports.get_agregar = (request, response, next) => {
     console.log(request.session.username);
-    response.render('agregar_planta', {
-        isLoggedIn: request.session.isLoggedIn || false,
-        username: request.session.username || '',
-        csrfToken: request.csrfToken(),
+    Plantas.fetchAll().then(([plantas, fieldData]) => {
+        response.render('agregar_planta', {
+            isLoggedIn: request.session.isLoggedIn || false,
+            username: request.session.username || '',
+            csrfToken: request.csrfToken(),
+            privilegios: request.session.privilegios || [],
+            plantas: plantas,
+        });
+    }).catch((error) => {
+        console.log(error);
     });
 };
 
 exports.post_agregar = (request, response, next) => {
     console.log(request.body);
-    const mi_planta = new Planta(request.body.nombre);
+    const mi_planta = new Jardin(request.session.user_id, request.body.id_planta);
     mi_planta.save()
         .then(() => {
             request.session.info = `La planta ${mi_planta.nombre} se ha creado`;
@@ -24,12 +31,14 @@ exports.post_agregar = (request, response, next) => {
 
 exports.get_root = (request, response, next) => {
 
+    console.log(request.session.privilegios);
+
     const mensaje = request.session.info || '';
     if (request.session.info) {
         request.session.info = '';
     }
 
-    Planta.fetch(request.params.id)
+    Jardin.fetchAll(request.session.user_id)
         .then(([rows, fieldData]) => {
             console.log(fieldData);
             console.log(rows);
@@ -38,6 +47,7 @@ exports.get_root = (request, response, next) => {
                 username: request.session.username || '',
                 plantas: rows,
                 info: mensaje,
+                privilegios: request.session.privilegios || [],
             });
         }).catch((error) => {
             console.log(error);
