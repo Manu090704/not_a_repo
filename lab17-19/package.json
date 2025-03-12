@@ -4,7 +4,7 @@
   "description": "lab17 en adelante con edmundo.",
   "main": "app.js",
   "scripts": {
-    "test": "start"
+    "start": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -16,9 +16,16 @@
     "url": "https://github.com/Manu090704/not_a_repo/issues"
   },
   "homepage": "https://github.com/Manu090704/not_a_repo#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "csurf": "^1.11.0",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "nodemon": "^3.1.9"
+    "express-session": "^1.18.1",
+    "mysql2": "^3.13.0"
   }
 }
