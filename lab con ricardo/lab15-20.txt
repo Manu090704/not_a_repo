@@ -1,0 +1,240 @@
+Reunión Natural
+
+Algebra relacional.
+entregan JN materiales
+
+SQL
+select * from materiales,entregan
+where materiales.clave = entregan.clave
+
+Si algún material no ha se ha entregado ¿Aparecería en el resultado de esta consulta?
+	No,ya que esta búsqueda lo que se obtiene son todos los materiales que ya se entregaron (los que están dentro de la tabla materiales y entregan).
+
+-----------------------------------------------------------------------------------------------------
+
+Unión (se ilustra junto con selección)
+
+Algebra relacional.
+SL{clave=1450}(entregan) UN SL{clave=1300}(entregan)
+
+SQL
+(select * from entregan where clave=1450)
+union
+(select * from entregan where clave=1300)
+
+¿Cuál sería una consulta que obtuviera el mismo resultado sin usar el operador Unión? Compruébalo.
+SELECT * 
+FROM entregan
+WHERE clave = 1450 
+AND clave = 1300;
+-----------------------------------------------------------------------------------------------------
+
+Diferencia (se ilustra con selección )
+
+Algebra relacional.
+entregan - SL{clave=1000}(entregan)
+
+SQL
+(select * from entregan)
+minus
+(select * from entregan where clave=1000)
+
+Nuevamente, "minus" es una palabra reservada que no está definida en SQL Server, define una consulta que regrese el mismo resultado.
+
+SELECT * 
+FROM entregan
+WHERE clave != 1000;
+
+
+-----------------------------------------------------------------------------------------------------
+
+Producto cartesiano
+
+Algebra relacional.
+entregan X materiales
+
+SQL
+select * from entregan,materiales
+
+¿Cómo está definido el número de tuplas de este resultado en términos del número de tuplas de entregan y de materiales?
+
+El número de tuplas esta definido por el número de registros en la tabla de entregan.
+
+-----------------------------------------------------------------------------------------------------
+
+Construcción de consultas a partir de una especificación
+
+Plantea ahora una consulta para obtener las descripciones de los materiales entregados en el año 2000.
+
+Recuerda que la fecha puede indicarse como '01-JAN-2000' o '01/01/00'.
+
+Importante: Recuerda que cuando vayas a trabajar con fechas, antes de que realices tus consultas debes ejecutar la instrucción "set dateformat dmy". Basta con que la ejecutes una sola vez para que el manejador sepa que vas a trabajar con ese formato de fechas.
+
+¿Por qué aparecen varias veces algunas descripciones de material?
+	Porque se entregaron en diferentes años.
+
+Consulta:
+SELECT * 
+FROM entregan
+WHERE fecha >= '2000-01-01';
+
+-----------------------------------------------------------------------------------------------------
+
+Uso del calificador distinct
+
+En el resultado anterior, observamos que una misma descripción de material aparece varias veces.
+
+Agrega la palabra distinct inmediatamente después de la palabra select a la consulta que planteaste antes.
+
+¿Qué resultado obtienes en esta ocasión?
+	Se eliminan los duplicados.
+
+-----------------------------------------------------------------------------------------------------
+
+Ordenamientos.
+
+Si al final de una sentencia select se agrega la cláusula
+
+order by campo [desc] [,campo [desc] ...]
+
+donde las partes encerradas entre corchetes son opcionales (los corchetes no forman parte de la sintaxis), los puntos suspensivos indican que pueden incluirse varios campos y la palabra desc se refiere a descendente. Esta cláusula permite presentar los resultados en un orden específico.
+
+Obtén los números y denominaciones de los proyectos con las fechas y cantidades de sus entregas, ordenadas por número de proyecto, presentando las fechas de la más reciente a la más antigua.
+
+SELECT p.Numero, p.Denominacion, e.Fecha, e.Cantidad
+FROM entregan e, proyectos p
+WHERE P.numero = e.numero
+ORDER BY (fecha) DESC;
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+Los materiales (clave y descripción) entregados al proyecto "México sin ti no estamos completos".
+
+Consulta:
+SELECT m.clave, m.descripcion
+FROM materiales m, entregan e, proyectos p
+WHERE e.clave = m.clave 
+AND p.numero = e.numero
+AND p.denominacion = "México sin ti no estamos completos";
+
+-----------------------------------------------------------------------------------------------------
+ Los materiales (clave y descripción) que han sido proporcionados por el proveedor "Acme tools".
+
+Consulta:
+SELECT m.clave, m.descripcion
+FROM materiales m, entregan e, proveedores p
+WHERE m.clave = e.clave
+AND e.rfc = p.rfc
+AND p.razonsocial = 'Acme tools';
+
+-----------------------------------------------------------------------------------------------------
+El RFC de los proveedores que durante el 2000 entregaron en promedio cuando menos 300 materiales.
+
+Consulta:
+SELECT rfc
+FROM entregan 
+WHERE fecha BETWEEN '2000-01-01' AND '2000-12-31'
+GROUP BY rfc
+HAVING AVG(cantidad) >= 300;
+
+-----------------------------------------------------------------------------------------------------
+El Total entregado por cada material en el año 2000.
+
+Consulta:
+SELECT SUM(cantidad) AS 'total'
+FROM entregan
+WHERE fecha BETWEEN '2000-01-01' AND '2000-12-31'
+GROUP BY (clave);
+
+-----------------------------------------------------------------------------------------------------
+La Clave del material más vendido durante el 2001. (se recomienda usar una vista intermedia para su solución)
+
+Consulta:
+CREATE VIEW materialMasVendido AS
+SELECT m.clave
+FROM materiales m, entregan e
+WHERE m.clave = e.clave
+AND e.fecha BETWEEN '2001-01-01' AND '2001-12-31';
+
+-----------------------------------------------------------------------------------------------------
+Productos que contienen el patrón 'ub' en su nombre.
+
+Consulta:
+SELECT descripcion 
+FROM materiales 
+WHERE descripcion LIKE '%ub%';
+
+-----------------------------------------------------------------------------------------------------
+Denominación y suma del total a pagar para todos los proyectos.
+
+Consulta:
+SELECT p.denominacion, SUM(e.cantidad * m.costo) AS total_a_pagar
+FROM proyectos p ,entregan e, materiales m
+WHERE p.numero = e.numero 
+AND e.clave = m.clave
+GROUP BY p.denominacion;
+
+-----------------------------------------------------------------------------------------------------
+Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila (Solo usando vistas).
+
+Consultas:
+CREATE VIEW ProveedoresTelevisa AS
+SELECT DISTINCT p.rfc, p.razonsocial
+FROM proveedores p, entregan e, proyectos pr
+WHERE p.rfc = e.rfc 
+AND e.numero = pr.numero
+AND pr.denominacion = 'Televisa en acción';
+
+CREATE VIEW ProveedoresEducandoCoahuila AS
+SELECT DISTINCT p.rfc, p.razonsocial
+FROM proveedores p , entregan e ,proyectos pr
+WHERE p.rfc = e.rfc
+AND e.numero = pr.numero
+AND pr.denominacion = 'Educando en Coahuila';
+
+SELECT pr.denominacion, p.rfc, p.razonsocial
+FROM proveedoresTelevisa pt, proveedores p, proyectos pr
+WHERE pt.rfc = p.rfc
+AND pt.rfc NOT IN (SELECT rfc FROM ProveedoresEducandoCoahuila);
+
+-----------------------------------------------------------------------------------------------------
+Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila (Sin usar vistas, utiliza not in, in o exists).
+
+Consulta:
+SELECT pr.denominacion, p.rfc, p.razonsocial
+FROM proveedores p, entregan e, proyectos pr
+WHERE p.rfc = e.rfc
+AND e.numero = pr.numero
+AND pr.denominacion = 'Televisa en acción'
+AND p.rfc NOT IN (
+                    SELECT DISTINCT p2.rfc
+                    FROM proveedores p2, entregan e2, proyectos pr2
+                    WHERE p2.rfc = e2.rfc
+                    AND e2.numero = pr2.numero
+                    AND pr2.denominacion = 'Educando en Coahuila'
+                );
+
+-----------------------------------------------------------------------------------------------------
+Costo de los materiales y los Materiales que son entregados al proyecto Televisa en acción cuyos proveedores también suministran materiales al proyecto Educando en Coahuila.
+
+Consulta:
+SELECT m.clave, m.descripcion, m.costo
+FROM materiales m, entregan e, proyectos pr
+WHERE m.clave = e.clave
+AND e.numero = pr.numero
+AND pr.denominacion = 'Televisa en acción'
+AND e.rfc IN (
+                SELECT DISTINCT e2.rfc
+                FROM entregan e2, proyectos pr2
+                WHERE e2.numero = pr2.numero
+                AND pr2.denominacion = 'Educando en Coahuila'
+            );
+
+
+
+
