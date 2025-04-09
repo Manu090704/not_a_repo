@@ -1,0 +1,38 @@
+Stored Procedure:
+
+---------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Top3MaterialesMasEntregados`()
+BEGIN
+SELECT m.descripcion, SUM(e.cantidad) AS total_entregado
+FROM entregan e, materiales m 
+WHERE  e.clave = m.clave
+GROUP BY m.clave, m.descripcion
+ORDER BY total_entregado DESC
+LIMIT 3;
+END
+---------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TotalEntregadoPorMaterial`(IN clave_material INT)
+BEGIN
+  SELECT m.descripcion, SUM(e.cantidad) AS total_entregado
+  FROM entregan e, materiales m
+  WHERE e.clave = m.clave
+  AND e.clave = clave_material
+  GROUP BY m.descripcion;
+END
+
+--------------------------------------------------------------------------------.
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EntregasEntreFechas`(IN fecha_inicio DATE, IN fecha_fin DATE)
+BEGIN
+  SELECT e.fecha, m.descripcion, e.cantidad
+  FROM entregan e, materiales m
+  WHERE  e.clave = m.clave
+  AND e.fecha BETWEEN fecha_inicio AND fecha_fin
+  ORDER BY e.fecha;
+END
+
+--------------------------------------------------------------------------------
+CALL TotalEntregadoPorMaterial(1310);
+
+CALL Top3MaterialesMasEntregados();
+
+CALL EntregasEntreFechas(1999-07-13, 1998-07-28);
