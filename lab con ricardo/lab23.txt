@@ -36,3 +36,10 @@ CALL TotalEntregadoPorMaterial(1310);
 CALL Top3MaterialesMasEntregados();
 
 CALL EntregasEntreFechas(1999-07-13, 1998-07-28);
+
+--------------------------------------------------------------------------------
+
+¿Qué desventajas identificas en la utilización de store procedures?
+
+Puede que funcione en un gestor de base de datos pero no en otro.
+Si hay un problema puede dificultar encontrar la raíz de este.

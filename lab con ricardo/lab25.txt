@@ -1,0 +1,28 @@
+START TRANSACTION;
+
+-- Actualizar precio e impuesto del material con clave 1200
+UPDATE materiales
+SET precio = 260, impuesto = 26
+WHERE clave = 1200;
+
+-- Registrar una nueva entrega del mismo material
+INSERT INTO entregan (clave, rfc, numero, fecha, cantidad)
+VALUES (1200, 'JJJJ800101', 6001, '2025-04-09', 300);
+
+-- Confirmar transacción
+COMMIT;
+
+-----------------------------------------------------------
+
+START TRANSACTION;
+
+-- Insertamos un nuevo material
+INSERT INTO materiales (clave, descripcion, precio, impuesto)
+VALUES (1500, 'Arena blanca fina', 180, 18);
+
+-- Insertamos una entrega asociada a ese material
+INSERT INTO entregan (clave, rfc, numero, fecha, cantidad)
+VALUES (1500, 'ZZZZ800101', 5050, '2025-04-09', 250);
+
+-- Confirmamos la transacción si todo está bien
+COMMIT;

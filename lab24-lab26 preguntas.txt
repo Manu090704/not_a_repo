@@ -1,0 +1,28 @@
+Lab24-AJAX:
+Implementado en el proyecto.
+
+¿Qué importancia tiene AJAX en el desarrollo de RIA's (Rich Internet Applications?
+AJAX permite que las aplicaciones web realicen solicitudes asincrónicas al servidor y actualicen solo partes específicas de una página, sin necesidad de recargarla completamente. Esto mejora notablemente la experiencia del usuario, ya que hace que la aplicación sea más rápida, fluida e interactiva.
+
+¿Qué implicaciones de seguridad tiene AJAX? ¿Dónde se deben hacer las validaciones de seguridad, del lado del cliente o del lado del servidor?
+Una de las implicaciones más importantes de seguridad con AJAX es la exposición de datos sensibles, ya que las solicitudes viajan por la red y pueden ser interceptadas si no están protegidas adecuadamente. También puede abrir la puerta a ataques como XSS (Cross-Site Scripting) o CSRF (Cross-Site Request Forgery) si no se manejan con cuidado.
+
+Las validaciones críticas y de seguridad siempre deben hacerse del lado del servidor, que es la capa segura del sistema. Las validaciones del lado del cliente solo deben servir como apoyo para mejorar la experiencia del usuario, pero nunca deben sustituir la validación del servidor.
+
+¿Qué es JSON?
+JavaScript Object Notation.
+
+------------------------------------------------------------------------------------------------------
+
+lab26-Servicios Web
+Implementado en el proyecto.
+
+¿Qué ventajas y desventajas tiene la integración de tus aplicaciones web con servicios web desarrollados por terceros?
+
+Ventajas:
+Ahorro de tiempo y recursos.
+Especialización.
+
+Desventajas:
+Dependencia externa.
+Costo.
